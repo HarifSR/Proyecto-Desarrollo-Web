@@ -12,51 +12,422 @@
     <button onclick="toggleForm('encuesta1')">Mostrar Encuesta 1</button>
     <form id="encuesta1" class="hidden">
       <h2>Encuesta 1</h2>
-      <label>Nombre de la mujer: <input type="text" name="nombre1" /></label>
-      <label>Edad: <input type="number" name="edad1" /></label>
-      <label>Tipo de encuesta: <input type="text" name="tipo1" /></label>
+      
 
-      <h3>1. HIGIENE BÁSICA</h3>
-      <p>¿Cuándo hay que lavarse las manos?</p>
-      <label><input type="checkbox" name="lavarse1" /> Antes de comer</label>
-      <label><input type="checkbox" name="lavarse1" /> Antes de cocinar</label>
-      <label><input type="checkbox" name="lavarse1" /> Antes de dar de comer</label>
-      <label><input type="checkbox" name="lavarse1" /> Después de usar la letrina</label>
-    </form>
+  <label> Fecha de entrevista: <input type="date" name="fecha" /></label>
+  <label> Número de boleta: <input type="text" name="boleta" /></label>
+
+  <h3>DATOS GENERALES</h3>
+  <label>Departamento: <input type="text" name="departamento" /></label>
+  <label>Municipio: <input type="text" name="municipio" /></label>
+  <label>Seleccione comunidad: <input type="text" name="comunidad" /></label>
+  <label>Nombre del encuestador: <input type="text" name="encuestador" /></label>
+
+  <p>Sexo del encuestador:</p>
+  <label><input type="radio" name="sexo_encuestador" value="Masculino" /> Masculino</label>
+  <label><input type="radio" name="sexo_encuestador" value="Femenino" /> Femenino</label>
+
+  <label>Nombre de la mujer: <input type="text" name="nombre_mujer" /></label>
+  <label>Edad: <input type="number" name="edad" /></label>
+
+  <p>Tipo de encuesta:</p>
+  <label><input type="radio" name="tipo_encuesta" value="Embarazada" /> Embarazada</label>
+  <label><input type="radio" name="tipo_encuesta" value="Madre niño/a menor de meses" /> Madre de niño/a menor de meses</label>
+  <label><input type="radio" name="tipo_encuesta" value="Madre niño/a de 6 a 24 meses" /> Madre de niño/a de 6 a 24 meses</label>
+
+  <h3>1. HIGIENE BÁSICA</h3>
+  <p>¿Cuándo hay que lavarse las manos?</p>
+  <label><input type="checkbox" name="lavarse[]" /> Antes de comer</label>
+  <label><input type="checkbox" name="lavarse[]" /> Antes de cocinar</label>
+  <label><input type="checkbox" name="lavarse[]" /> Antes de dar de comer</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de usar la letrina</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de cambiar pañales</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de hacer la limpieza</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de tocar dinero</label>
+  <label><input type="checkbox" name="lavarse[]" /> Cuando las tiene sucias</label>
+
+  <h4>OBSERVACIÓN DE LA VIVIENDA</h4>
+  <label><input type="checkbox" name="vivienda[]" /> Ambientes separados</label>
+  <label><input type="checkbox" name="vivienda[]" /> Cocina limpia y ordenada</label>
+  <label><input type="checkbox" name="vivienda[]" /> Camas tendidas</label>
+  <label><input type="checkbox" name="vivienda[]" /> Floreros y recipientes de agua limpios</label>
+  <label><input type="checkbox" name="vivienda[]" /> Ropa limpia y ordenada</label>
+
+  <p>Fuera de la vivienda:</p>
+  <label><input type="checkbox" name="vivienda[]" /> No hay basura acumulada o regada</label>
+  <label><input type="checkbox" name="vivienda[]" /> No hay heces fecales o popó</label>
+  <label><input type="checkbox" name="vivienda[]" /> Toneles tapados</label>
+  <label><input type="checkbox" name="vivienda[]" /> Pilas limpias y cepilladas</label>
+  <label><input type="checkbox" name="vivienda[]" /> Animales en corral (pollos, gallinas, patos, etc.)</label>
+  <label><input type="checkbox" name="vivienda[]" /> Cunetas</label>
+  <label><input type="checkbox" name="vivienda[]" /> Letrinas limpias (dentro y fuera)</label>
+
+  <h3>2. AGUA Y ENFERMEDADES</h3>
+  <p>¿El agua no desinfectada puede provocar enfermedades?</p>
+  <label><input type="radio" name="agua_enferma" value="Sí" /> Sí</label>
+  <label><input type="radio" name="agua_enferma" value="No" /> No</label>
+
+  <p>¿Qué enfermedades puede provocar esta agua?</p>
+  <label><input type="checkbox" name="enfermedades_agua[]" /> Diarrea, dolor de estómago, infección estomacal</label>
+  <label><input type="checkbox" name="enfermedades_agua[]" /> Enfermedades de la piel</label>
+
+  <h3>3. Purificación del agua</h3>
+  <p>¿Qué métodos usan en casa?</p>
+  <label><input type="checkbox" name="metodos_agua[]" /> Hervir el agua</label>
+  <label><input type="checkbox" name="metodos_agua[]" /> Clorar</label>
+  <label><input type="checkbox" name="metodos_agua[]" /> SODIS</label>
+  <label><input type="checkbox" name="metodos_agua[]" /> Filtrar el agua</label>
+  <label><input type="checkbox" name="metodos_agua[]" /> Agua embotellada</label>
+
+  <p>¿El agua que toman está clorada?</p>
+  <label><input type="radio" name="agua_clorada" value="Sí" /> Sí</label>
+  <label><input type="radio" name="agua_clorada" value="No" /> No</label>
+
+  <p>¿Qué enfermedades puede provocar el agua?</p>
+  <label><input type="checkbox" name="agua_clorada_fuente[]" /> Clorada por la Municipalidad</label>
+  <label><input type="checkbox" name="agua_clorada_fuente[]" /> Clorada en casa</label>
+
+  <p>¿Está de acuerdo con que la municipalidad clore el agua?</p>
+  <label><input type="radio" name="deacuerdo_clorar" value="Sí" /> Sí</label>
+  <label><input type="radio" name="deacuerdo_clorar" value="No" /> No</label>
+
+  <h3>4. SANEAMIENTO AMBIENTAL</h3>
+  <p>¿Qué enfermedades producen las aguas usadas y que corren sobre la tierra?</p>
+  <label><input type="checkbox" name="saneamiento_enfermedades[]" /> Diarrea, dolor de estómago, infección estomacal</label>
+  <label><input type="checkbox" name="saneamiento_enfermedades[]" /> Enfermedades de la piel</label>
+
+  <p>¿Sabe cómo evitar que el agua corra sobre la tierra en las comunidades?</p>
+  <label><input type="radio" name="evitar_agua" value="Sí" /> Sí</label>
+  <label><input type="radio" name="evitar_agua" value="No" /> No</label>
+
+  <p>¿Qué se puede hacer?</p>
+  <label><input type="checkbox" name="acciones_saneamiento[]" /> Drenajes a nivel de la vivienda (pozo séptico)</label>
+  <label><input type="checkbox" name="acciones_saneamiento[]" /> Sumideros</label>
+  <label><input type="checkbox" name="acciones_saneamiento[]" /> Drenajes a nivel de calles (alcantarillado municipal)</label>
+
+  <h3>5. ATENCIÓN PRENATAL</h3>
+  <p>¿Conoce cuántos controles debe tener una mujer durante el embarazo?</p>
+  <label><input type="radio" name="controles_embarazo" value="Sí" /> Sí</label>
+  <label><input type="radio" name="controles_embarazo" value="No" /> No</label>
+
+  <p>¿Cuántos controles?</p>
+  <label><input type="radio" name="numero_controles" value="1" /> 1</label>
+  <label><input type="radio" name="numero_controles" value="2" /> 2</label>
+  <label><input type="radio" name="numero_controles" value="3" /> 3</label>
+  <label><input type="radio" name="numero_controles" value="4" /> 4</label>
+
+  <h3>5. DISCAPACIDAD</h3>
+  <p>¿Sabe qué es discapacidad?</p>
+  <label><input type="radio" name="sabe_discapacidad" value="Sí" /> Sí</label>
+  <label><input type="radio" name="sabe_discapacidad" value="No" /> No</label>
+
+  <p>¿Qué es para usted la discapacidad?</p>
+  <label><input type="checkbox" name="concepto_discapacidad[]" /> Es cuando un niño/a no puede caminar</label>
+  <label><input type="checkbox" name="concepto_discapacidad[]" /> Cuando un niño/a su cabeza o cuerpo no se desarrollan</label>
+  <label><input type="checkbox" name="concepto_discapacidad[]" /> Cuando un niño/a no habla, no escucha o no pone atención</label>
+
+  <p>¿En su familia existen niños/as con alguna discapacidad?</p>
+  <label><input type="radio" name="familia_discapacidad" value="Sí" /> Sí</label>
+  <label><input type="radio" name="familia_discapacidad" value="No" /> No</label>
+
+  <p>¿Qué actividades realizan con ellos?</p>
+  <label><input type="checkbox" name="actividades_discapacidad[]" /> Llevarlo a rehabilitación</label>
+  <label><input type="checkbox" name="actividades_discapacidad[]" /> Llevarlo a servicio de salud</label>
+  <label><input type="checkbox" name="actividades_discapacidad[]" /> Llevarlo al centro de estimulación</label>
+</form>
   </div>
 
   <div class="formulario">
     <button onclick="toggleForm('encuesta2')">Mostrar Encuesta 2</button>
     <form id="encuesta2" class="hidden">
       <h2>Encuesta 2</h2>
-      <label>Nombre de la mujer: <input type="text" name="nombre2" /></label>
-      <label>Edad: <input type="number" name="edad2" /></label>
-      <label>Tipo de encuesta: <input type="text" name="tipo2" /></label>
+      
+  <label> Fecha de entrevista: <input type="date" name="fecha2" /></label>
+  <label> Número de boleta: <input type="text" name="boleta2" /></label>
 
-      <h3>1. HIGIENE BÁSICA</h3>
-      <p>¿Cuándo hay que lavarse las manos?</p>
-      <label><input type="checkbox" name="lavarse2" /> Antes de comer</label>
-      <label><input type="checkbox" name="lavarse2" /> Antes de cocinar</label>
-      <label><input type="checkbox" name="lavarse2" /> Antes de dar de comer</label>
-      <label><input type="checkbox" name="lavarse2" /> Después de usar la letrina</label>
-    </form>
+  <h3>DATOS GENERALES</h3>
+  <label>Departamento: <input type="text" name="departamento2" /></label>
+  <label>Municipio: <input type="text" name="municipio2" /></label>
+  <label>Seleccione comunidad: <input type="text" name="comunidad2" /></label>
+  <label>Nombre del encuestador: <input type="text" name="encuestador2" /></label>
+
+  <p>Sexo del encuestador:</p>
+  <label><input type="radio" name="sexo_encuestador2" value="Masculino" /> Masculino</label>
+  <label><input type="radio" name="sexo_encuestador2" value="Femenino" /> Femenino</label>
+
+  <label>Nombre de la mujer: <input type="text" name="nombre_mujer2" /></label>
+  <label>Edad: <input type="number" name="edad2" /></label>
+
+  <p>Tipo de encuesta:</p>
+  <label><input type="radio" name="tipo_encuesta2" value="Embarazada" /> Embarazada</label>
+  <label><input type="radio" name="tipo_encuesta2" value="Madre niño/a menor de meses" /> Madre de niño/a menor de meses</label>
+  <label><input type="radio" name="tipo_encuesta2" value="Madre niño/a de 6 a 24 meses" /> Madre de niño/a de 6 a 24 meses</label>
+
+  <h3>1. HIGIENE BÁSICA</h3>
+  <p>¿Cuándo hay que lavarse las manos?</p>
+  <label><input type="checkbox" name="lavarse2[]" /> Antes de comer</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Antes de cocinar</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Antes de dar de comer</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Después de usar la letrina</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Después de cambiar pañales</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Después de hacer la limpieza</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Después de tocar dinero</label>
+  <label><input type="checkbox" name="lavarse2[]" /> Cuando las tiene sucias</label>
+
+  <h4>OBSERVACIÓN DE LA VIVIENDA</h4>
+  <label><input type="checkbox" name="vivienda2[]" /> Ambientes separados</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Cocina limpia y ordenada</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Camas tendidas</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Floreros y recipientes de agua limpios</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Ropa limpia y ordenada</label>
+
+  <p>Fuera de la vivienda:</p>
+  <label><input type="checkbox" name="vivienda2[]" /> No hay basura acumulada o regada</label>
+  <label><input type="checkbox" name="vivienda2[]" /> No hay heces fecales o popó</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Toneles tapados</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Pilas limpias y cepilladas</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Animales en corral (pollos, gallinas, patos, etc.)</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Cunetas</label>
+  <label><input type="checkbox" name="vivienda2[]" /> Letrinas limpias (dentro y fuera)</label>
+
+  <h3>2. AGUA Y ENFERMEDADES</h3>
+  <p>¿El agua no desinfectada puede provocar enfermedades?</p>
+  <label><input type="radio" name="agua_enferma2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="agua_enferma2" value="No" /> No</label>
+
+  <p>¿Qué enfermedades puede provocar esta agua?</p>
+  <label><input type="checkbox" name="enfermedades_agua2[]" /> Diarrea, dolor de estómago, infección estomacal</label>
+  <label><input type="checkbox" name="enfermedades_agua2[]" /> Enfermedades de la piel</label>
+
+  <h3>3. Purificación del agua</h3>
+  <label><input type="checkbox" name="metodos_agua2[]" /> Hervir el agua</label>
+  <label><input type="checkbox" name="metodos_agua2[]" /> Clorar</label>
+  <label><input type="checkbox" name="metodos_agua2[]" /> SODIS</label>
+  <label><input type="checkbox" name="metodos_agua2[]" /> Filtrar el agua</label>
+  <label><input type="checkbox" name="metodos_agua2[]" /> Agua embotellada</label>
+
+  <p>¿El agua que toman está clorada?</p>
+  <label><input type="radio" name="agua_clorada2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="agua_clorada2" value="No" /> No</label>
+
+  <p>¿Qué enfermedades puede provocar esa agua?</p>
+  <label><input type="checkbox" name="agua_clorada_fuente2[]" /> Clorada por la Municipalidad</label>
+  <label><input type="checkbox" name="agua_clorada_fuente2[]" /> Clorada en casa</label>
+
+  <p>¿Está de acuerdo con que la municipalidad clore el agua?</p>
+  <label><input type="radio" name="deacuerdo_clorar2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="deacuerdo_clorar2" value="No" /> No</label>
+
+  <h3>4. SANEAMIENTO AMBIENTAL</h3>
+  <label><input type="checkbox" name="saneamiento_enfermedades2[]" /> Diarrea, dolor de estómago, infección estomacal</label>
+  <label><input type="checkbox" name="saneamiento_enfermedades2[]" /> Enfermedades de la piel</label>
+
+  <p>¿Sabe cómo evitar que el agua corra sobre la tierra?</p>
+  <label><input type="radio" name="evitar_agua2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="evitar_agua2" value="No" /> No</label>
+
+  <p>¿Qué se puede hacer?</p>
+  <label><input type="checkbox" name="acciones_saneamiento2[]" /> Drenajes a nivel de la vivienda (pozo séptico)</label>
+  <label><input type="checkbox" name="acciones_saneamiento2[]" /> Sumideros</label>
+  <label><input type="checkbox" name="acciones_saneamiento2[]" /> Drenajes a nivel de calles (alcantarillado municipal)</label>
+
+  <h3>5. ATENCIÓN PRENATAL</h3>
+  <label><input type="radio" name="controles_embarazo2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="controles_embarazo2" value="No" /> No</label>
+
+  <p>¿Cuántos controles?</p>
+  <label><input type="radio" name="numero_controles2" value="1" /> 1</label>
+  <label><input type="radio" name="numero_controles2" value="2" /> 2</label>
+  <label><input type="radio" name="numero_controles2" value="3" /> 3</label>
+  <label><input type="radio" name="numero_controles2" value="4" /> 4</label>
+
+  <h3>6. DISCAPACIDAD</h3>
+  <label><input type="radio" name="sabe_discapacidad2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="sabe_discapacidad2" value="No" /> No</label>
+
+  <p>¿Qué es para usted la discapacidad?</p>
+  <label><input type="checkbox" name="concepto_discapacidad2[]" /> Es cuando un niño/a no puede caminar</label>
+  <label><input type="checkbox" name="concepto_discapacidad2[]" /> Cuando un niño/a su cabeza o cuerpo no se desarrollan</label>
+  <label><input type="checkbox" name="concepto_discapacidad2[]" /> Cuando un niño/a no habla, no escucha o no pone atención</label>
+
+  <p>¿En su familia existen niños/as con alguna discapacidad?</p>
+  <label><input type="radio" name="familia_discapacidad2" value="Sí" /> Sí</label>
+  <label><input type="radio" name="familia_discapacidad2" value="No" /> No</label>
+
+  <p>¿Qué actividades realizan con ellos?</p>
+  <label><input type="checkbox" name="actividades_discapacidad2[]" /> Llevarlo a rehabilitación</label>
+  <label><input type="checkbox" name="actividades_discapacidad2[]" /> Llevarlo a servicio de salud</label>
+  <label><input type="checkbox" name="actividades_discapacidad2[]" /> Llevarlo al centro de estimulación</label>
+</form>
   </div>
 
   <div class="formulario">
     <button onclick="toggleForm('encuesta3')">Mostrar Encuesta 3</button>
     <form id="encuesta3" class="hidden">
       <h2>Encuesta 3</h2>
-      <label>Nombre de la mujer: <input type="text" name="nombre3" /></label>
-      <label>Edad: <input type="number" name="edad3" /></label>
-      <label>Tipo de encuesta: <input type="text" name="tipo3" /></label>
+      <label>Fecha de entrevista: <input type="date" name="fecha" /></label>
+  <label>Número de boleta: <input type="text" name="boleta" /></label>
 
-      <h3>1. HIGIENE BÁSICA</h3>
-      <p>¿Cuándo hay que lavarse las manos?</p>
-      <label><input type="checkbox" name="lavarse3" /> Antes de comer</label>
-      <label><input type="checkbox" name="lavarse3" /> Antes de cocinar</label>
-      <label><input type="checkbox" name="lavarse3" /> Antes de dar de comer</label>
-      <label><input type="checkbox" name="lavarse3" /> Después de usar la letrina</label>
-    </form>
+  <h3>DATOS GENERALES</h3>
+  <label>Departamento: <input type="text" name="departamento" /></label>
+  <label>Municipio: <input type="text" name="municipio" /></label>
+  <label>Seleccione comunidad: <input type="text" name="comunidad" /></label>
+  <label>Nombre del encuestador: <input type="text" name="encuestador" /></label>
+  <p>Sexo del encuestador:</p>
+  <label><input type="radio" name="sexo_encuestador" value="Masculino" /> Masculino</label>
+  <label><input type="radio" name="sexo_encuestador" value="Femenino" /> Femenino</label>
+
+  <label>Nombre de la mujer: <input type="text" name="nombre_mujer" /></label>
+  <label>Edad: <input type="number" name="edad" /></label>
+
+  <p>Tipo de encuesta:</p>
+  <label><input type="radio" name="tipo_encuesta" value="Embarazada" /> Embarazada</label>
+  <label><input type="radio" name="tipo_encuesta" value="Menor meses" /> Madre de niño/a menor de meses</label>
+  <label><input type="radio" name="tipo_encuesta" value="6 a 24 meses" /> Madre de niño/a de 6 a 24 meses</label>
+
+  <h3>1. HIGIENE BÁSICA</h3>
+  <p>¿Cuándo hay que lavarse las manos?</p>
+  <label><input type="checkbox" name="lavarse[]" /> Antes de comer</label>
+  <label><input type="checkbox" name="lavarse[]" /> Antes de cocinar</label>
+  <label><input type="checkbox" name="lavarse[]" /> Antes de dar de comer</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de usar la letrina</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de cambiar pañales</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de hacer la limpieza</label>
+  <label><input type="checkbox" name="lavarse[]" /> Después de tocar dinero</label>
+  <label><input type="checkbox" name="lavarse[]" /> Cuando las tiene sucias</label>
+
+  <h4>OBSERVACIÓN DE LA VIVIENDA</h4>
+  <label><input type="checkbox" name="vivienda[]" /> Ambientes separados</label>
+  <label><input type="checkbox" name="vivienda[]" /> Cocina limpia y ordenada</label>
+  <label><input type="checkbox" name="vivienda[]" /> Camas tendidas</label>
+  <label><input type="checkbox" name="vivienda[]" /> Floreros y recipientes de agua limpios</label>
+  <label><input type="checkbox" name="vivienda[]" /> Ropa limpia y ordenada</label>
+  <label><input type="checkbox" name="vivienda[]" /> No hay basura acumulada o regada</label>
+  <label><input type="checkbox" name="vivienda[]" /> No hay heces fecales o popo</label>
+  <label><input type="checkbox" name="vivienda[]" /> Toneles tapados</label>
+  <label><input type="checkbox" name="vivienda[]" /> Pilas limpias y cepilladas</label>
+  <label><input type="checkbox" name="vivienda[]" /> Animales en corral</label>
+  <label><input type="checkbox" name="vivienda[]" /> Cunetas</label>
+  <label><input type="checkbox" name="vivienda[]" /> Letrinas limpias</label>
+
+  <h3>2. AGUA Y ENFERMEDADES</h3>
+  <p>¿El agua no desinfectada puede provocar enfermedades?</p>
+  <label><input type="radio" name="agua_enferma" value="Si" /> Sí</label>
+  <label><input type="radio" name="agua_enferma" value="No" /> No</label>
+
+  <p>¿Qué enfermedades puede provocar esta agua?</p>
+  <label><input type="checkbox" name="enfermedades[]" /> Diarrea, dolor de estómago, infección estomacal</label>
+  <label><input type="checkbox" name="enfermedades[]" /> Enfermedades de la piel</label>
+
+  <h3>3. PURIFICACIÓN DEL AGUA</h3>
+  <label><input type="checkbox" name="purifica[]" /> Hervir el agua</label>
+  <label><input type="checkbox" name="purifica[]" /> Clorar</label>
+  <label><input type="checkbox" name="purifica[]" /> SODIS</label>
+  <label><input type="checkbox" name="purifica[]" /> Filtrar el agua</label>
+  <label><input type="checkbox" name="purifica[]" /> Agua embotellada</label>
+
+  <p>¿El agua está clorada en la comunidad?</p>
+  <label><input type="radio" name="clorada" value="Si" /> Sí</label>
+  <label><input type="radio" name="clorada" value="No" /> No</label>
+
+  <p>¿Qué enfermedades puede provocar esa agua?</p>
+  <label><input type="checkbox" name="clorada_fuente[]" /> Clorada por la Municipalidad</label>
+  <label><input type="checkbox" name="clorada_fuente[]" /> Clorada en casa</label>
+
+  <p>¿Está de acuerdo con que se clore el agua?</p>
+  <label><input type="radio" name="acuerdo_clorar" value="Si" /> Sí</label>
+  <label><input type="radio" name="acuerdo_clorar" value="No" /> No</label>
+
+  <h3>4. SANEAMIENTO AMBIENTAL</h3>
+  <label><input type="checkbox" name="saneamiento[]" /> Diarrea, dolor de estómago, infección estomacal</label>
+  <label><input type="checkbox" name="saneamiento[]" /> Enfermedades de la piel</label>
+
+  <p>¿Sabe cómo evitar el agua que corre sobre la tierra?</p>
+  <label><input type="radio" name="evita_corriente" value="Si" /> Sí</label>
+  <label><input type="radio" name="evita_corriente" value="No" /> No</label>
+
+  <p>¿Qué se puede hacer?</p>
+  <label><input type="checkbox" name="acciones[]" /> Drenajes en vivienda</label>
+  <label><input type="checkbox" name="acciones[]" /> Sumideros</label>
+  <label><input type="checkbox" name="acciones[]" /> Alcantarillado municipal</label>
+
+  <h3>5. ATENCIÓN PRENATAL</h3>
+  <p>¿Conoce el número mínimo de controles?</p>
+  <label><input type="radio" name="controles" value="Si" /> Sí</label>
+  <label><input type="radio" name="controles" value="No" /> No</label>
+
+  <p>¿Cuántos controles?</p>
+  <label><input type="radio" name="num_controles" value="1" /> 1</label>
+  <label><input type="radio" name="num_controles" value="2" /> 2</label>
+  <label><input type="radio" name="num_controles" value="3" /> 3</label>
+  <label><input type="radio" name="num_controles" value="4" /> 4</label>
+
+  <h3>6. DISCAPACIDAD</h3>
+  <label><input type="radio" name="sabe_discapacidad" value="Si" /> Sí</label>
+  <label><input type="radio" name="sabe_discapacidad" value="No" /> No</label>
+
+  <p>¿Qué es discapacidad para usted?</p>
+  <label><input type="checkbox" name="concepto_discapacidad[]" /> No puede caminar</label>
+  <label><input type="checkbox" name="concepto_discapacidad[]" /> Cabeza/cuerpo diferente</label>
+  <label><input type="checkbox" name="concepto_discapacidad[]" /> No habla, escucha o pone atención</label>
+
+  <p>¿Niños con discapacidad en la familia?</p>
+  <label><input type="radio" name="discapacidad_familia" value="Si" /> Sí</label>
+  <label><input type="radio" name="discapacidad_familia" value="No" /> No</label>
+
+  <p>¿Qué actividades realizan con ellos?</p>
+  <label><input type="checkbox" name="actividades_discapacidad[]" /> Rehabilitación</label>
+  <label><input type="checkbox" name="actividades_discapacidad[]" /> Servicio de salud</label>
+  <label><input type="checkbox" name="actividades_discapacidad[]" /> Centro de estimulación</label>
+
+  <h3>7. LACTANCIA MATERNA</h3>
+  <p>Tiempo al primer pecho:</p>
+  <label><input type="radio" name="inicio_lactancia" value="1h" /> 1 hora</label>
+  <label><input type="radio" name="inicio_lactancia" value="1-24h" /> 1-24 horas</label>
+  <label><input type="radio" name="inicio_lactancia" value="2h" /> 2 horas</label>
+  <label><input type="radio" name="inicio_lactancia" value="2d" /> 2 días</label>
+
+  <p>¿Qué hace mientras alimenta?</p>
+  <label><input type="radio" name="acciones_mama" value="Nada" /> Nada</label>
+  <label><input type="radio" name="acciones_mama" value="Algo" /> Algo</label>
+
+  <p>Acciones mientras alimenta:</p>
+  <label><input type="checkbox" name="acciones_alimentar[]" /> Lo mira a los ojos</label>
+  <label><input type="checkbox" name="acciones_alimentar[]" /> Hace juegos</label>
+  <label><input type="checkbox" name="acciones_alimentar[]" /> Se asegura que no quede con hambre</label>
+
+  <h3>8. CONTROL PEDIÁTRICO</h3>
+  <label><input type="radio" name="control_salud" value="Si" /> Sí</label>
+  <label><input type="radio" name="control_salud" value="No" /> No</label>
+
+  <p>Edad del niño en meses y número de controles:</p>
+  <label>Edad (meses): <input type="number" min="1" max="24" name="edad_hijo" /></label>
+  <label>Controles recibidos: <input type="number" min="0" max="24" name="veces_control" /></label>
+
+  <h3>9. VIOLENCIA CONTRA LA NIÑEZ</h3>
+  <label><input type="radio" name="violencia_conoce" value="Si" /> Sí</label>
+  <label><input type="radio" name="violencia_conoce" value="No" /> No</label>
+
+  <p>Formas de violencia:</p>
+  <label><input type="checkbox" name="formas_violencia[]" /> Psicológica</label>
+  <label><input type="checkbox" name="formas_violencia[]" /> Física</label>
+  <label><input type="checkbox" name="formas_violencia[]" /> Agresión sexual</label>
+  <label><input type="checkbox" name="formas_violencia[]" /> Negligencia</label>
+
+  <p>Situaciones donde se usa violencia:</p>
+  <label><input type="checkbox" name="situaciones_violencia[]" /> Ninguna ocasión</label>
+  <label><input type="checkbox" name="situaciones_violencia[]" /> No hace caso</label>
+  <label><input type="checkbox" name="situaciones_violencia[]" /> No hace tareas</label>
+  <label><input type="checkbox" name="situaciones_violencia[]" /> Contesta mal</label>
+  <label><input type="checkbox" name="situaciones_violencia[]" /> Se porta mal</label>
+
+  <p>¿Cómo corrige a sus niños?</p>
+  <label><input type="checkbox" name="correccion[]" /> Dialogando</label>
+  <label><input type="checkbox" name="correccion[]" /> Regañando</label>
+  <label><input type="checkbox" name="correccion[]" /> Gritando</label>
+  <label><input type="checkbox" name="correccion[]" /> Pegando</label>
+  <label><input type="checkbox" name="correccion[]" /> Ignorando</label>
+</form>
   </div>
 
   <script src="scrip.js"></script>
