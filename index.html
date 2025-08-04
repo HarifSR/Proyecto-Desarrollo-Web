@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuestas CAB</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Formulario de Encuestas CAB</h1>
+
+  <div class="formulario">
+    <button onclick="toggleForm('encuesta1')">Mostrar Encuesta 1</button>
+    <form id="encuesta1" class="hidden">
+      <h2>Encuesta 1</h2>
+      <label>Nombre de la mujer: <input type="text" name="nombre1" /></label>
+      <label>Edad: <input type="number" name="edad1" /></label>
+      <label>Tipo de encuesta: <input type="text" name="tipo1" /></label>
+
+      <h3>1. HIGIENE BÁSICA</h3>
+      <p>¿Cuándo hay que lavarse las manos?</p>
+      <label><input type="checkbox" name="lavarse1" /> Antes de comer</label>
+      <label><input type="checkbox" name="lavarse1" /> Antes de cocinar</label>
+      <label><input type="checkbox" name="lavarse1" /> Antes de dar de comer</label>
+      <label><input type="checkbox" name="lavarse1" /> Después de usar la letrina</label>
+    </form>
+  </div>
+
+  <div class="formulario">
+    <button onclick="toggleForm('encuesta2')">Mostrar Encuesta 2</button>
+    <form id="encuesta2" class="hidden">
+      <h2>Encuesta 2</h2>
+      <label>Nombre de la mujer: <input type="text" name="nombre2" /></label>
+      <label>Edad: <input type="number" name="edad2" /></label>
+      <label>Tipo de encuesta: <input type="text" name="tipo2" /></label>
+
+      <h3>1. HIGIENE BÁSICA</h3>
+      <p>¿Cuándo hay que lavarse las manos?</p>
+      <label><input type="checkbox" name="lavarse2" /> Antes de comer</label>
+      <label><input type="checkbox" name="lavarse2" /> Antes de cocinar</label>
+      <label><input type="checkbox" name="lavarse2" /> Antes de dar de comer</label>
+      <label><input type="checkbox" name="lavarse2" /> Después de usar la letrina</label>
+    </form>
+  </div>
+
+  <div class="formulario">
+    <button onclick="toggleForm('encuesta3')">Mostrar Encuesta 3</button>
+    <form id="encuesta3" class="hidden">
+      <h2>Encuesta 3</h2>
+      <label>Nombre de la mujer: <input type="text" name="nombre3" /></label>
+      <label>Edad: <input type="number" name="edad3" /></label>
+      <label>Tipo de encuesta: <input type="text" name="tipo3" /></label>
+
+      <h3>1. HIGIENE BÁSICA</h3>
+      <p>¿Cuándo hay que lavarse las manos?</p>
+      <label><input type="checkbox" name="lavarse3" /> Antes de comer</label>
+      <label><input type="checkbox" name="lavarse3" /> Antes de cocinar</label>
+      <label><input type="checkbox" name="lavarse3" /> Antes de dar de comer</label>
+      <label><input type="checkbox" name="lavarse3" /> Después de usar la letrina</label>
+    </form>
+  </div>
+
+  <script src="scrip.js"></script>
+</body>
+</html>
