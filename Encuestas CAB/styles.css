@@ -1,31 +1,53 @@
+/* ==========================================================================
+   Estilos Avanzados para Encuestas CAB v2
+   ========================================================================== */
+
+/* --- Fuentes y Variables Globales --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-primary: #3498db;
-  --color-primary-dark: #2980b9;
-  --color-secondary: #2ecc71;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  --color-primary-start: #4a90e2;
+  --color-primary-end: #50e3c2;
+  --color-primary-dark: #3a7bc8;
+  
   --color-danger: #e74c3c;
+  --color-success: #2ecc71;
+  
+  --color-text: #34495e;
+  --color-text-light: #7f8c8d;
+  --color-heading: #2c3e50;
+  
   --color-light: #ffffff;
-  --color-dark: #2c3e50;
-  --color-muted: #95a5a6;
-  --color-background: #ecf0f1;
-  --color-border: #bdc3c7;
-  --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  --border-radius: 8px;
-  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --color-bg: #f4f7f9;
+  --color-bg-alt: #e9eef2;
+  --color-border: #dfe6e9;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+  
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
 }
 
-*,
-*::before,
-*::after {
+/* --- Estilos Base --- */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 body {
   font-family: var(--font-family);
-  background-color: var(--color-background);
-  color: var(--color-dark);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   line-height: 1.6;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -34,9 +56,10 @@ body {
 
 /* --- Barra Superior (Header) --- */
 .topbar {
-  background-color: var(--color-light);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   padding: 1rem 2rem;
-  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,8 +70,11 @@ body {
 }
 
 .topbar h1 {
-  font-size: 1.5rem;
-  color: var(--color-primary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--color-primary-start), var(--color-primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 0;
 }
 
@@ -60,7 +86,7 @@ body {
 
 #whoami {
   font-weight: 500;
-  color: var(--color-dark);
+  color: var(--color-heading);
 }
 
 .btn-out {
@@ -71,26 +97,43 @@ body {
   border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 .btn-out:hover {
   background-color: var(--color-danger);
   color: var(--color-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-/* --- Estructura de Pantallas --- */
+/* --- Contenedores y Tarjetas --- */
 .pantalla {
   padding: 2rem 1rem;
-  max-width: 800px;
+  max-width: 850px;
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.formulario {
+  background-color: var(--color-light);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.formulario:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 #screen-login .formulario {
-  max-width: 450px;
+  max-width: 480px;
   margin: 4rem auto;
 }
 
@@ -98,45 +141,33 @@ body {
   display: none !important;
 }
 
-/* --- Formularios y Tarjetas --- */
-.formulario {
-  background-color: var(--color-light);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  width: 100%;
-}
-
+/* --- Títulos y Textos --- */
 .formulario h2, .formulario h3 {
-  margin-bottom: 1rem;
-  color: var(--color-dark);
-  border-bottom: 2px solid var(--color-primary);
-  padding-bottom: 0.5rem;
-  display: inline-block;
+  color: var(--color-heading);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
 }
 
 .formulario h4 {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
   color: var(--color-primary-dark);
-}
-
-.formulario p {
-  margin-bottom: 1rem;
+  border-left: 3px solid var(--color-primary-start);
+  padding-left: 1rem;
 }
 
 .muted {
-  color: var(--color-muted);
+  color: var(--color-text-light);
   font-size: 0.9rem;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* --- Elementos de Formulario --- */
+/* --- Elementos de Formulario Mejorados --- */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 label {
@@ -144,20 +175,7 @@ label {
   flex-direction: column;
   font-weight: 500;
   gap: 0.5rem;
-}
-
-/* Estilos para inputs de radio y checkbox */
-label > input[type="radio"],
-label > input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
-
-label:has(input[type="radio"]),
-label:has(input[type="checkbox"]) {
-  flex-direction: row;
-  align-items: center;
-  font-weight: 400;
-  cursor: pointer;
+  color: var(--color-text);
 }
 
 input[type="email"],
@@ -166,42 +184,131 @@ input[type="text"],
 input[type="date"],
 input[type="number"] {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   font-size: 1rem;
   font-family: var(--font-family);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--color-bg);
+  transition: all var(--transition-speed) ease;
 }
 
 input:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  border-color: var(--color-primary-start);
+  background-color: var(--color-light);
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
 }
 
+/* --- Checkbox y Radio Buttons Personalizados --- */
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px; /* Espacio para el control personalizado */
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  opacity: 0; /* Oculta el control original */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+/* Estilo del control FALSO */
+label:has(input[type="radio"])::before,
+label:has(input[type="checkbox"])::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  background: var(--color-bg-alt);
+  transition: all var(--transition-speed) ease;
+}
+
+/* Estilo para Radio */
+label:has(input[type="radio"])::before {
+  border-radius: 50%;
+}
+
+/* Estilo para Checkbox */
+label:has(input[type="checkbox"])::before {
+  border-radius: 4px;
+}
+
+/* Indicador de estado (la marca) */
+label:has(input[type="radio"])::after,
+label:has(input[type="checkbox"])::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  transition: transform var(--transition-speed) ease;
+}
+
+/* Indicador para Radio (círculo interior) */
+label:has(input[type="radio"])::after {
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: var(--color-light);
+  border-radius: 50%;
+}
+
+/* Indicador para Checkbox (marca de verificación) */
+label:has(input[type="checkbox"])::after {
+  content: '✔';
+  left: 3px;
+  top: 45%;
+  font-size: 14px;
+  color: var(--color-light);
+}
+
+/* Estilos al estar SELECCIONADO */
+input[type="radio"]:checked + label::before,
+input[type="checkbox"]:checked + label::before {
+  background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
+  border-color: var(--color-primary-start);
+}
+
+input[type="radio"]:checked + label::after,
+input[type="checkbox"]:checked + label::after {
+  transform: translateY(-50%) scale(1);
+}
+
+/* --- Botones --- */
 button[type="submit"],
 .actions button {
-  background-color: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary-start), var(--color-primary-end));
   color: var(--color-light);
   border: none;
-  padding: 0.9rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: var(--border-radius);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  align-self: flex-end; /* Alinear a la derecha */
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow-sm);
+  align-self: flex-end;
 }
 
 button[type="submit"]:hover,
 .actions button:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .actions {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
 }
@@ -210,115 +317,101 @@ button[type="submit"]:hover,
 button[onclick^="toggleForm"] {
     width: 100%;
     text-align: left;
-    background-color: #f9f9f9;
+    background-color: var(--color-light);
     border: 1px solid var(--color-border);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     border-radius: var(--border-radius);
-    transition: background-color 0.3s ease;
-    margin-bottom: 0; /* Se colapsa con el form */
+    transition: all var(--transition-speed) ease;
+    position: relative;
 }
-
+button[onclick^="toggleForm"]::after {
+    content: '▼';
+    position: absolute;
+    right: 1.5rem;
+    transition: transform var(--transition-speed) ease;
+}
 button[onclick^="toggleForm"]:hover {
-    background-color: #f1f1f1;
+    background-color: var(--color-bg);
+    border-color: var(--color-primary-start);
 }
-
 .encuesta-form {
     border: 1px solid var(--color-border);
     border-top: none;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    margin-top: -1px; /* Para que se junte con el botón */
-}
-
-
-/* --- Ayuda de Demo --- */
-.demo-help {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  background-color: #f8f9fa;
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  padding: 0.5rem 1rem;
-}
-
-.demo-help summary {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.demo-help ul {
-  list-style-position: inside;
-  padding-left: 0;
-  margin-top: 0.5rem;
+    margin-top: -1px;
 }
 
 /* --- Panel de Administrador --- */
 .segmented {
   display: flex;
-  border: 1px solid var(--color-primary);
   border-radius: var(--border-radius);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
   margin-bottom: 2rem;
 }
 
 .seg-btn {
   flex: 1;
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   border: none;
   background-color: var(--color-light);
-  color: var(--color-primary);
+  color: var(--color-text-light);
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+  position: relative;
 }
 
-.seg-btn:not(:last-child) {
-  border-right: 1px solid var(--color-primary);
-}
-
-.seg-btn.active,
-.seg-btn:hover {
-  background-color: var(--color-primary);
+.seg-btn.active {
   color: var(--color-light);
+  background: linear-gradient(90deg, var(--color-primary-start), var(--color-primary-end));
 }
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1.5rem;
   text-align: center;
 }
 
+.stat {
+  background-color: var(--color-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+}
+
 .stat span {
   display: block;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: var(--color-heading);
 }
 
 .stat small {
-  color: var(--color-muted);
+  color: var(--color-text-light);
   font-weight: 500;
 }
 
 /* --- Responsividad --- */
 @media (max-width: 768px) {
   .topbar {
-    flex-direction: column;
-    gap: 0.5rem;
     padding: 1rem;
   }
-  
   .pantalla {
     padding: 1rem;
     margin: 1rem auto;
   }
-  
   .formulario {
     padding: 1.5rem;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
   }
 }
