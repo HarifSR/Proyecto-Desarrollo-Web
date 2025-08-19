@@ -233,7 +233,14 @@ function renderConfig() {
     tr.innerHTML = `
       <td>${u.user}</td>
       <td>${u.rol}</td>
+      <td>
+        <select  class"" name="select">
+          <option value = "active"> activo</option>
+          <option value = "inactive"> inactivo</option>
+        </select>
+      </td>
       <td><button class="btn btn-sm btn-outline-danger" data-del-user="${idx}">Eliminar</button></td>
+      <td><button class="btn btn-sm btn-outline" ">editar</button></td>
     `;
     tblUsuarios.appendChild(tr);
   });
@@ -245,6 +252,7 @@ function renderConfig() {
     });
   });
 }
+
 document.getElementById('btnAddUser')?.addEventListener('click', ()=>{
   const u = document.getElementById('uNombre').value.trim();
   const r = document.getElementById('uRol').value;
