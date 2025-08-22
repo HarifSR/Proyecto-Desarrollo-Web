@@ -25,6 +25,39 @@ const state = {
     { dep: 'El Progreso', mun: 'Sansare', nom: 'Caserío B / COCODE B-2' },
   ],
   stats: { hoy: 18, com: 12, enc: 7, preg: 120 }
+    ,
+  semaforo: [
+    {
+      dep: 'El Progreso', mun: 'Guastatoya', com: 'Aldea A', grupo: 'Embarazadas',
+      pregunta: '¿Cuándo hay que lavarse las manos?', promedio: 45, categoria: 'higiene'
+    },
+    {
+      dep: 'El Progreso', mun: 'Sansare', com: 'Caserío B', grupo: 'Madres 1-6',
+      pregunta: '¿El agua no desinfectada provoca enfermedades?', promedio: 30, categoria: 'agua'
+    },
+    {
+      dep: 'El Progreso', mun: 'Guastatoya', com: 'Aldea A', grupo: 'Embarazadas',
+      pregunta: '¿Conoce cuántos controles debe tener una mujer durante el embarazo?', promedio: 70, categoria: 'salud'
+    },
+    {
+  dep: 'El Progreso', mun: 'Guastatoya', com: 'Aldea A', grupo: 'Embarazadas',
+  pregunta: '¿Al cuánto tiempo dio pecho al bebé menor?', promedio: 100, categoria: 'lactancia'
+},
+{
+  dep: 'El Progreso', mun: 'Sansare', com: 'Caserío B', grupo: 'Madres 1-6',
+  pregunta: '¿Qué hace mientras alimenta a su hijo/a?', promedio: 62, categoria: 'lactancia'
+},
+
+{
+  dep: 'El Progreso', mun: 'Guastatoya', com: 'Aldea A', grupo: 'Embarazadas',
+  pregunta: '¿Conoce tipos de violencia en el hogar?', promedio: 100, categoria: 'violencia'
+},
+{
+  dep: 'El Progreso', mun: 'Sansare', com: 'Caserío B', grupo: 'Madres 6-24',
+  pregunta: '¿En qué situaciones se usa violencia con niños/as?', promedio: 48, categoria: 'violencia'
+}
+  ]
+
 };
 
 /***** Elementos base *****/
@@ -46,6 +79,8 @@ function showScreen(id) {
   if (id === 'screen-reportes') renderReportes();
   if (id === 'screen-comunidades') renderComunidades();
   if (id === 'screen-config') renderConfig();
+  if (id === 'screen-semaforo') renderSemaforo();
+
 }
 
 /***** Login / Logout *****/
@@ -181,6 +216,40 @@ document.getElementById('btnAplicarFiltros')?.addEventListener('click', () => {
   // Aquí leerías filtros y re-generarías datasets con datos reales del backend
   renderReportes();
 });
+
+/***** Semáforo Municipal *****/
+function renderSemaforo() {
+  const tbody = document.getElementById('tblSemaforo');
+  const selCat = document.getElementById('filtroCategoria');
+  const selMun = document.getElementById('filtroMunicipio');
+  if (!tbody) return;
+
+  const cat = selCat ? selCat.value : 'todas';
+  const mun = selMun ? selMun.value : 'todos';
+  tbody.innerHTML = '';
+
+  state.semaforo
+    .filter(r => cat === 'todas' || r.categoria === cat)
+     .filter(r => (mun === 'todos' || r.mun === mun))
+    .forEach(r => {
+      const color = r.promedio < 50 ? '🔴 Rojo' : (r.promedio < 75 ? '🟡 Amarillo' : '🟢 Verde');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${r.dep}</td>
+        <td>${r.mun}</td>
+        <td>${r.com}</td>
+        <td>${r.grupo}</td>
+        <td>${r.pregunta}</td>
+        <td>${r.promedio}%</td>
+        <td>${color}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+}
+
+// Botón de filtro
+document.getElementById('btnFiltrarSemaforo')?.addEventListener('click', renderSemaforo);
+
 
 /***** Administración comunitaria *****/
 const tblComunidades = document.getElementById('tblComunidades');

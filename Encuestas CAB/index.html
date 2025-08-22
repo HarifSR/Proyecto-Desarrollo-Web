@@ -746,6 +746,7 @@
                 <canvas id="chartPie"></canvas>
               </div></div>
             </div>
+            
             <div class="col-12 col-lg-6">
               <div class="card"><div class="card-body">
                 <h6 class="mb-2">Encuestas por comunidad</h6>
@@ -754,6 +755,69 @@
             </div>
           </div>
         </section>
+
+<!-- ===== Semáforo Municipal ===== -->
+<section id="screen-semaforo" class="screen d-none">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 mb-0">Dashboard Semáforo</h2>
+    <span class="text-muted small">Municipios en rojo</span>
+  </div>
+
+  <!-- Filtros -->
+<div class="card mb-3">
+  <div class="card-body row g-2">
+    <div class="col-md-4">
+      <label class="form-label">Categoría de pregunta</label>
+      <select id="filtroCategoria" class="form-select">
+        <option value="todas">Todas</option>
+        <option value="higiene">Higiene básica</option>
+        <option value="agua">Agua y saneamiento</option>
+        <option value="salud">Salud prenatal</option>
+        <option value="lactancia">Lactancia materna</option>
+        <option value="violencia">Prevención de la violencia contra la niñez</option>
+      </select>
+    </div>
+
+    <!-- NUEVO: filtro de municipio -->
+    <div class="col-md-4">
+      <label class="form-label">Municipio</label>
+      <select id="filtroMunicipio" class="form-select">
+        <option value="todos">Todos</option>
+        <option value="Guastatoya">Guastatoya</option>
+        <option value="Sansare">Sansare</option>
+      </select>
+    </div>
+
+    <div class="col-md-2 d-flex align-items-end">
+      <button id="btnFiltrarSemaforo" class="btn btn-primary w-100">Aplicar</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Tabla -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+          <thead>
+            <tr>
+              <th>Departamento</th>
+              <th>Municipio</th>
+              <th>Comunidad</th>
+              <th>Grupo focal</th>
+              <th>Pregunta</th>
+              <th>Promedio</th>
+              <th>Semáforo</th>
+            </tr>
+          </thead>
+          <tbody id="tblSemaforo"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
 
         <!-- ===== Administración comunitaria ===== -->
         <section id="screen-comunidades" class="screen d-none">

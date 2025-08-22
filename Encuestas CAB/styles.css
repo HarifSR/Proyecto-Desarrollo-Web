@@ -134,3 +134,7 @@
   display: none;
 }
 
+/* Resalta la columna del semáforo */
+#screen-semaforo table td:last-child {
+  font-weight: 700;
+}
