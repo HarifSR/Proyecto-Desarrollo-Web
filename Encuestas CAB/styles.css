@@ -138,3 +138,28 @@
 #screen-semaforo table td:last-child {
   font-weight: 700;
 }
+
+
+/* ==== Ajustes visuales del constructor de preguntas ==== */
+#builderPreguntas table td,
+#builderPreguntas table th {
+  padding-top: 0.9rem;   /* más espacio arriba */
+  padding-bottom: 0.9rem;/* más espacio abajo */
+  vertical-align: middle; /* centra verticalmente */
+  font-size: 0.95rem;     /* un poco más grande */
+}
+
+/* Inputs y selects más cómodos dentro del builder */
+#builderPreguntas input,
+#builderPreguntas select {
+  min-height: 2.2rem;     /* más altos */
+  font-size: 0.95rem;
+}
+
+/* La tabla cargada también más espaciosa */
+#tbodyPreguntasCargadas td,
+#tbodyPreguntasCargadas th {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  vertical-align: middle;
+}

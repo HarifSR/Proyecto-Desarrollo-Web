@@ -17,8 +17,9 @@ const state = {
     { user: 'luis', rol: 'Analista' },
   ],
   encuestas: [
-    { id: 1, nombre: 'Higiene básica 2025', grupo: 'General', preguntas: 12 },
-    { id: 2, nombre: 'Agua y enfermedades', grupo: 'Madres 6-24', preguntas: 15 },
+    { id: 1, nombre: 'Higiene básica 2025', grupo: 'General',      preguntas: 12, activo: true },
+  { id: 2, nombre: 'Agua y enfermedades', grupo: 'Madres 6-24',  preguntas: 15, activo: true },
+  { id: 3, nombre: 'Conocimientos en maternidad', grupo: 'Embarazadas', preguntas: 10, activo: true }
   ],
   comunidades: [
     { dep: 'El Progreso', mun: 'Guastatoya', nom: 'Aldea A / COCODE A-1' },
@@ -148,38 +149,153 @@ document.getElementById('btnCancelarEncuesta')?.addEventListener('click', () => 
 document.getElementById('btnGuardarEncuesta')?.addEventListener('click', () => {
   const nombre = document.getElementById('fNombre').value.trim();
   const grupo  = document.getElementById('fGrupo').value;
-  const pregs  = parseInt(document.getElementById('fPregs').value, 10) || 1;
-  if (!nombre) return alert('Escribe un nombre');
+
+  if (!nombre) return alert('Escribe un nombre de encuesta');
+
+  // 1) Tomar preguntas del constructor
+  const preguntasDef = collectPreguntasFromUI();
+  // 2) Fallback: si no agregaron ninguna, usa el número del input para reservar la cantidad (mock)
+  const pregsInput   = parseInt(document.getElementById('fPregs').value, 10) || 0;
+  const totalPregs   = preguntasDef.length > 0 ? preguntasDef.length : Math.max(pregsInput, 1);
+
   const id = state.encuestas.length ? Math.max(...state.encuestas.map(e=>e.id))+1 : 1;
-  state.encuestas.push({ id, nombre, grupo, preguntas: pregs });
+
+  // Guardamos la encuesta con sus preguntas (y activo por defecto)
+  state.encuestas.push({
+    id,
+    nombre,
+    grupo,
+    preguntas: totalPregs,   // número visible en la lista
+    activo: true,            // usa tu switch actual
+    preguntasDef             // <-- definición completa registrada
+  });
+
+  // Limpiar UI
   boxFormEncuesta.classList.add('d-none');
+  document.getElementById('fNombre').value = '';
+  document.getElementById('fPregs').value = 10;
+  if (tbodyPreguntas) tbodyPreguntas.innerHTML = '';
+
   renderEncuestas();
 });
+
+/***** Constructor de preguntas (Gestión de encuestas) *****/
+const tbodyPreguntas = document.getElementById('tbodyPreguntas');
+const tplPregunta    = document.getElementById('tplPregunta');
+
+function renumerarPreguntas() {
+  if (!tbodyPreguntas) return;
+  [...tbodyPreguntas.querySelectorAll('.q-row')].forEach((tr, i) => {
+    tr.querySelector('.q-idx').textContent = i + 1;
+  });
+}
+
+function agregarPregunta(prefill = {}) {
+  if (!tplPregunta || !tbodyPreguntas) return;
+  const node = tplPregunta.content.cloneNode(true);
+  const tr   = node.querySelector('.q-row');
+
+  // Prefill opcional
+  tr.querySelector('.q-texto').value     = prefill.texto     || '';
+  tr.querySelector('.q-categoria').value = prefill.categoria || 'higiene';
+  tr.querySelector('.q-tipo').value      = prefill.tipo      || 'si_no';
+  tr.querySelector('.q-opciones').value  = prefill.opciones  || '';
+
+  // Mostrar/ocultar opciones según tipo
+  const selTipo   = tr.querySelector('.q-tipo');
+  const inpOp     = tr.querySelector('.q-opciones');
+  const toggleOps = () => {
+    inpOp.disabled = (selTipo.value !== 'opcion');
+    if (selTipo.value !== 'opcion') inpOp.value = inpOp.value; // conserva, pero deshabilitado
+  };
+  selTipo.addEventListener('change', toggleOps);
+  toggleOps();
+
+  // Quitar fila
+  tr.querySelector('.q-del').addEventListener('click', () => {
+    tr.remove();
+    renumerarPreguntas();
+  });
+
+  tbodyPreguntas.appendChild(node);
+  renumerarPreguntas();
+}
+
+// Botones
+document.getElementById('btnAgregarPregunta')?.addEventListener('click', () => agregarPregunta());
+document.getElementById('btnLimpiarPreguntas')?.addEventListener('click', () => {
+  if (!tbodyPreguntas) return;
+  tbodyPreguntas.innerHTML = '';
+  renumerarPreguntas();
+});
+
+// Lee todas las preguntas del constructor
+function collectPreguntasFromUI() {
+  if (!tbodyPreguntas) return [];
+  const rows = [...tbodyPreguntas.querySelectorAll('.q-row')];
+  return rows.map((tr, idx) => {
+    const texto     = tr.querySelector('.q-texto').value.trim();
+    const categoria = tr.querySelector('.q-categoria').value;
+    const tipo      = tr.querySelector('.q-tipo').value;
+    const opciones  = tr.querySelector('.q-opciones').value.trim();
+    return {
+      orden: idx + 1,
+      texto,
+      categoria,         // higiene | agua | salud | lactancia | violencia
+      tipo,              // si_no | opcion | numerica
+      opciones: tipo === 'opcion'
+        ? opciones.split('|').map(s => s.trim()).filter(Boolean)
+        : []
+    };
+  }).filter(p => p.texto.length > 0);
+}
+
 
 function renderEncuestas() {
   tblEncuestas.innerHTML = '';
   state.encuestas.forEach(e => {
+    // seguridad por si faltara 'activo' en algún registro antiguo
+    const activo = (e.activo !== false);
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${e.nombre}</td>
       <td>${e.grupo}</td>
       <td>${e.preguntas}</td>
+
+      <!-- ESTADO: switch -->
+      <td>
+        <div class="form-check form-switch m-0">
+          <input class="form-check-input enc-act-toggle" type="checkbox"
+                 role="switch" id="sw-${e.id}" data-id="${e.id}" ${activo ? 'checked' : ''}>
+          <label class="form-check-label ms-2" for="sw-${e.id}">
+            ${activo ? 'Activo' : 'Inactivo'}
+          </label>
+        </div>
+      </td>
+
+      <!-- ACCIONES: solo Asignar -->
       <td class="d-flex gap-2">
         <button class="btn btn-sm btn-outline-secondary">Asignar</button>
-        <button class="btn btn-sm btn-outline-primary">Editar</button>
-        <button class="btn btn-sm btn-outline-danger" data-del="${e.id}">Eliminar</button>
-      </td>`;
+      </td>
+    `;
     tblEncuestas.appendChild(tr);
   });
-  // eliminar
-  tblEncuestas.querySelectorAll('[data-del]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = +btn.dataset.del;
-      state.encuestas = state.encuestas.filter(e => e.id !== id);
-      renderEncuestas();
+
+  // Evento: toggle activo/inactivo
+  tblEncuestas.querySelectorAll('.enc-act-toggle').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const id  = +inp.dataset.id;
+      const row = state.encuestas.find(x => x.id === id);
+      if (!row) return;
+      row.activo = inp.checked;
+
+      const label = inp.closest('.form-check').querySelector('.form-check-label');
+      if (label) label.textContent = row.activo ? 'Activo' : 'Inactivo';
     });
   });
 }
+
 
 /***** Recolección de datos: Guardar (mock) *****/
 function guardarFormulario(formId) {
