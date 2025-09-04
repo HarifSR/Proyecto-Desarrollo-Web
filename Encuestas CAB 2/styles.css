@@ -1,0 +1,165 @@
+/* ====== Layout app con sidebar ====== */
+.app-wrapper {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  background: #111827;
+  color: #e5e7eb;
+  border-right: 1px solid #1f2937;
+}
+
+.app-sidebar .list-group-item {
+  background: transparent;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 0;
+}
+.app-sidebar .list-group-item:hover,
+.app-sidebar .list-group-item.active {
+  background: #1f2937;
+}
+
+/* Contenido principal */
+.app-content {
+  padding: 20px;
+  background-color: #f3f4f6;
+}
+
+/* Pantallas */
+.screen { /* cada sección/pantalla */ }
+
+/* Tarjetas de stats */
+.stat-card .stat-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+.stat-card .stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Formularios móviles: que no se peguen a los bordes */
+#screen-recoleccion .formulario {
+  max-width: 800px;
+}
+
+/* Pequeños ajustes de cards en tablas */
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* Responsivo: colapsar sidebar en pantallas pequeñas (simple) */
+@media (max-width: 992px) {
+  .app-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .app-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+
+/* ====== Layout app con sidebar ====== */
+.app-wrapper {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  background: #111827;
+  color: #e5e7eb;
+  border-right: 1px solid #1f2937;
+}
+
+.app-sidebar .list-group-item {
+  background: transparent;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 0;
+}
+.app-sidebar .list-group-item:hover,
+.app-sidebar .list-group-item.active {
+  background: #1f2937;
+}
+
+/* Contenido principal */
+.app-content {
+  padding: 20px;
+  background-color: #f3f4f6;
+}
+
+/* Pantallas */
+.screen { /* cada sección/pantalla */ }
+
+/* Tarjetas de stats */
+.stat-card .stat-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+.stat-card .stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Formularios móviles: que no se peguen a los bordes */
+#screen-recoleccion .formulario {
+  max-width: 800px;
+}
+
+/* Pequeños ajustes de cards en tablas */
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* Responsivo: colapsar sidebar en pantallas pequeñas (simple) */
+@media (max-width: 992px) {
+  .app-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .app-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+/* ===== REGLA AÑADIDA PARA OCULTAR FORMULARIOS ===== */
+.hidden {
+  display: none;
+}
+
+/* Resalta la columna del semáforo */
+#screen-semaforo table td:last-child {
+  font-weight: 700;
+}
+
+
+/* ==== Ajustes visuales del constructor de preguntas ==== */
+#builderPreguntas table td,
+#builderPreguntas table th {
+  padding-top: 0.9rem;   /* más espacio arriba */
+  padding-bottom: 0.9rem;/* más espacio abajo */
+  vertical-align: middle; /* centra verticalmente */
+  font-size: 0.95rem;     /* un poco más grande */
+}
+
+/* Inputs y selects más cómodos dentro del builder */
+#builderPreguntas input,
+#builderPreguntas select {
+  min-height: 2.2rem;     /* más altos */
+  font-size: 0.95rem;
+}
+
+/* La tabla cargada también más espaciosa */
+#tbodyPreguntasCargadas td,
+#tbodyPreguntasCargadas th {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  vertical-align: middle;
+}
